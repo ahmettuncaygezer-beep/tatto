@@ -1,0 +1,48 @@
+# Tuncay Gezer Atelier — Cursor Rules
+# Architecture: Feature-Sliced Design + Next.js App Router + Strict TypeScript
+
+## CORE RULES
+
+### TypeScript
+- ZERO use of `any` type — use `unknown`, proper generics, or specific types
+- Strict null checks enabled — always handle null/undefined explicitly
+- All function parameters and return types must be explicitly typed
+- Prefer `interface` over `type` for object shapes
+- Use Zod for runtime validation of external data
+
+### Next.js App Router
+- Mark all interactive components with `'use client'` directive at the top
+- Server Components by default — only use client where needed (state, effects, browser APIs)
+- Use `next/image` for all images with explicit width/height
+- All API routes must use typed `NextRequest`/`NextResponse`
+
+### React
+- Always clean up useEffect subscriptions (return teardown function)
+- Prefer `useCallback` for event handlers passed to children
+- Never use inline object/array literals as props (causes re-render)
+- Use `useRef` for DOM manipulation, not `useState`
+
+### GSAP & Animation
+- Always kill ScrollTrigger instances in useEffect cleanup
+- Always revert Split-Type instances in cleanup
+- Pin GSAP timelines to component lifecycle
+
+### FSD Directory Compliance
+- `app/` — Next.js routing only
+- `features/` — Self-contained feature slices with their own components/hooks
+- `shared/lib/` — Pure utilities, no React components
+- `shared/types/` — All TypeScript interfaces and Zod schemas
+- `public/` — Static assets only
+
+### Performance
+- GPU-accelerate animations with `will-change: transform` only when animating
+- Remove `will-change` after animations complete
+- Target 60+ FPS on all interactive canvas elements
+- Lazy-load Three.js components with dynamic import
+
+### Naming
+- Components: PascalCase
+- Hooks: camelCase with `use` prefix
+- Utils: camelCase
+- Constants: SCREAMING_SNAKE_CASE
+- CSS classes: kebab-case

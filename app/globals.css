@@ -1,0 +1,205 @@
+/* app/globals.css */
+/* Design tokens, liquid-glass shader, and Google Fonts import */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   CSS Custom Properties — Brand Palette
+───────────────────────────────────────────── */
+:root {
+  --color-obsidian: #000000;
+  --color-deep-obsidian: #050505;
+  --color-gold: #D4AF37;
+  --color-amber: #FF9500;
+  --color-laser-red: #FF3B30;
+  --color-kintsugi: #F59E0B;
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-highlight: rgba(255, 255, 255, 0.03);
+  --font-cinzel: 'Cinzel', serif;
+  --font-syne: 'Syne', sans-serif;
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ─────────────────────────────────────────────
+   Base Reset
+───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  background-color: #000000 !important;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #000000 !important;
+  color: #ffffff;
+  font-family: var(--font-inter);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  color-scheme: dark;
+}
+
+video {
+  background-color: #000000 !important;
+}
+
+/* ─────────────────────────────────────────────
+   Liquid Glass Shader
+───────────────────────────────────────────── */
+.liquid-glass {
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.005) 100%
+  );
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.02),
+    0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+.liquid-glass-gold {
+  background: linear-gradient(
+    165deg,
+    rgba(212, 175, 55, 0.08) 0%,
+    rgba(212, 175, 55, 0.02) 100%
+  );
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow:
+    inset 0 0 20px rgba(212, 175, 55, 0.04),
+    0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+/* ─────────────────────────────────────────────
+   Typography
+───────────────────────────────────────────── */
+.font-cinzel {
+  font-family: var(--font-cinzel);
+}
+
+.font-syne {
+  font-family: var(--font-syne);
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #D4AF37 0%, #F59E0B 50%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────
+   Cursor
+───────────────────────────────────────────── */
+.cursor-canvas {
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto !important;
+  }
+  .cursor-canvas {
+    cursor: auto !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Gold Shimmer Animation
+───────────────────────────────────────────── */
+@keyframes goldShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    #D4AF37 0%,
+    #F59E0B 25%,
+    #ffffff 50%,
+    #F59E0B 75%,
+    #D4AF37 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 3s linear infinite;
+}
+
+/* ─────────────────────────────────────────────
+   Kintsugi Crack Glow
+───────────────────────────────────────────── */
+@keyframes kintsugiPulse {
+  0%, 100% { opacity: 0.7; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.4); }
+}
+
+.kintsugi-glow {
+  animation: kintsugiPulse 2.5s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────────────────
+   Scrollbar — Minimalist Dark
+───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-obsidian);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────────
+   Selection
+───────────────────────────────────────────── */
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: #ffffff;
+}
+
+/* ─────────────────────────────────────────────
+   Focus Ring — Accessible
+───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* ─────────────────────────────────────────────
+   Utility: Hide scrollbar but keep scroll
+───────────────────────────────────────────── */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
